@@ -24,14 +24,14 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         tableView.frame = view.bounds
         tableView.dataSource = self
         tableView.delegate = self
-        view.addSubview(tableView)
-//        view.addSubview(btn)
+//        view.addSubview(tableView)
+        view.addSubview(btn)
         
         btn1.addTarget(self, action: #selector(btn1Click), for: UIControlEvents.touchUpInside)
         btn1.setTitle("点我1", for: UIControlState.normal)
         btn1.frame = CGRect(x:50 , y: 400, width: 50, height: 50)
         btn1.backgroundColor = UIColor.green
-//        view.addSubview(btn1)
+        view.addSubview(btn1)
         
     }
     
