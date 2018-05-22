@@ -21,6 +21,16 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        demo01(name: "老张", age: nil)
+        
+        let oName:String? = "老王"
+        let oAge:Int? = 10
+        
+        if let name = oName,
+            let age = oAge{
+            print(name+String(age))
+        }
+        
         tableView.frame = view.bounds
         tableView.dataSource = self
         tableView.delegate = self
@@ -33,6 +43,14 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         btn1.backgroundColor = UIColor.green
         view.addSubview(btn1)
         
+    }
+    
+    func demo01(name:String?,age:Int?) {
+        guard let name = name, let age = age else {
+                print("name或者age为nil")
+                return;
+        }
+        print(name+String(age))
     }
     
     
