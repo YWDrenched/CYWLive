@@ -21,7 +21,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        demo01(name: "老张", age: nil)
+//        demo01(name: "老张", age: nil)
+        
+//        demo02(age: 50)
+        
+        demo03()
         
         let oName:String? = "老王"
         let oAge:Int? = 10
@@ -34,7 +38,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         tableView.frame = view.bounds
         tableView.dataSource = self
         tableView.delegate = self
-//        view.addSubview(tableView)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellID")
+        view.addSubview(tableView)
         view.addSubview(btn)
         
         btn1.addTarget(self, action: #selector(btn1Click), for: UIControlEvents.touchUpInside)
@@ -45,6 +50,25 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
     }
     
+    func demo03(){
+        for i in 0..<5 {
+            print(i)
+        }
+    }
+    
+    func demo02(age:Int)  {
+        switch age {
+        case 1,2,3:
+            print("小屁孩")
+        case 18:
+            print("哟可以上网了")
+        case 50:
+            print("老腊肉")
+        default:
+            print("结束")
+        }
+    }
+    
     func demo01(name:String?,age:Int?) {
         guard let name = name, let age = age else {
                 print("name或者age为nil")
@@ -53,7 +77,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         print(name+String(age))
     }
     
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -67,7 +91,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         if cell==nil {
             cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "cellID")
         }
-        cell?.detailTextLabel?.text = arr[indexPath.row]
+        cell?.textLabel?.text = arr[indexPath.row]
         return cell!
     }
     
