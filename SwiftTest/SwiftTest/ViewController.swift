@@ -11,12 +11,11 @@ import UIKit
 
 
 
-class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource{
+
+class ViewController: UIViewController{
     
     var btn1 = UIButton()
-    var tableView = UITableView()
-    
-    let arr:[String] = ["哈哈","呵呵","嘿嘿","嘻嘻"]
+    var arr:[String]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,29 +24,13 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
 //        demo02(age: 50)
         
-        demo03()
-        
-        let oName:String? = "老王"
-        let oAge:Int? = 10
-        
-        if let name = oName,
-            let age = oAge{
-            print(name+String(age))
-        }
-        
-        tableView.frame = view.bounds
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellID")
-        view.addSubview(tableView)
-        view.addSubview(btn)
-        
+//        demo03()
+
         btn1.addTarget(self, action: #selector(btn1Click), for: UIControlEvents.touchUpInside)
         btn1.setTitle("点我1", for: UIControlState.normal)
         btn1.frame = CGRect(x:50 , y: 400, width: 50, height: 50)
         btn1.backgroundColor = UIColor.green
         view.addSubview(btn1)
-        
     }
     
     func demo03(){
@@ -56,6 +39,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
     }
     
+
     func demo02(age:Int)  {
         switch age {
         case 1,2,3:
@@ -78,40 +62,18 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
 
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arr.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "cellID")
-        if cell==nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "cellID")
-        }
-        cell?.textLabel?.text = arr[indexPath.row]
-        return cell!
-    }
+
     
     
     @objc func btn1Click(){
         print("btn1点我")
+        let bibao = BibaoViewController()
+        navigationController?.pushViewController(bibao, animated: true)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
-//    函数
-    func sum(a:Int,b:Int) -> Int {
-        return a + b
-    }
-    
-    
-    
+
+
     //懒加载
     lazy var btn: UIButton = {
         let btn = UIButton(frame: CGRect(x: 100, y: 100, width: 200, height: 200))
@@ -123,10 +85,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         btn.addTarget(self, action: #selector(btnClick), for: UIControlEvents.touchUpInside)
         return btn
     }()
-    
-    
-    
-    
+    // MARK:qweqwe
     @objc func btnClick() {
         print("btn点我")
      }
